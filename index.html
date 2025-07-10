@@ -179,7 +179,7 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhZnBpZWNpbW1qdGx4aGxzemJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNDE4MjQsImV4cCI6MjA2NzcxNzgyNH0.N2zg5tNJWw42XbwH4TJ1masA3bvvi5I7q5Su_KpVkSA';
     const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-Heshoo Sheikhani, [7/10/2025 2:57 PM]
+    
 async function loadProducts() {
       const { data, error } = await supabase.from('products').select('*');
       const container = document.getElementById('products');
