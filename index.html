@@ -21,84 +21,165 @@
       --border: #AC9C8D;
     }
 
-    .categories {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 1rem;
-      background: var(--bg);
-    }
-
-    .categories button {
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      padding: 0.6rem 1.2rem;
-      margin: 0.3rem;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .categories button:hover {
-      background: var(--text);
-      color: var(--bg);
-    }
-
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(50, 45, 41, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .modal-content {
+    body {
+      margin: 0;
+      font-family: sans-serif;
       background: var(--bg);
       color: var(--text);
-      padding: 2rem;
-      width: 50%;
-      max-width: 500px;
-      max-height: 80vh;
-      overflow-y: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
       position: relative;
     }
 
-    .modal-close {
+    .dark-toggle {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      font-size: 1.1rem;
+      background: none;
+      border: 2px solid var(--accent);
+      color: var(--accent);
       padding: 0.3rem 0.6rem;
       border-radius: 4px;
       cursor: pointer;
-      transition: background 0.2s ease;
     }
 
-    .modal-close:hover {
-      background: var(--text);
+    .categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--bg);
+}
+
+.categories button {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin: 0.3rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.categories button:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+
+    .hero {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      min-height: 400px;
       color: var(--bg);
     }
 
-    .hidden {
-      display: none;
+    .hero-overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 3rem 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero a {
+      margin-top: 1.5rem;
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.7rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    .dragon-mascot {
+      position: absolute;
+      bottom: 8rem;
+      left: -1rem;
+      width: 27rem;
+      height: auto;
+      max-width: 29vw;
+      opacity: 1;
+      z-index: 2;
+      pointer-events: none;
+      animation: float 4s ease-in-out infinite, breathe 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes breathe {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .hero-carousel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      min-height: 120px;
+    }
+
+    .carousel-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-image.center {
+      width: 100px;
+      height: 100px;
+      filter: none;
+      transform: scale(1.1);
+      z-index: 1;
+    }
+
+    .carousel-image.faded {
+      opacity: 0.6;
+      filter: blur(2px);
+      z-index: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      z-index: 10;
+      position: relative;
+      background: var(--bg);
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Hesart's Store</h1>
     <button class="dark-toggle" onclick="toggleDarkMode()">🌗</button>
@@ -108,24 +189,32 @@
     <div class="hero-overlay">
       <h1>Welcome!</h1>
       <p>Discover crafted tools for easier drawing and enjoy our original dark fantasy story!</p>
+      <div id="hero-carousel" class="hero-carousel"></div>
+      <br>
       <a href="#products">Shop Now</a>
     </div>
-    <img src="https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//zuvo%20png.png" class="dragon-mascot" alt="Mascot">
+    <img src="https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/zuvo%20png.png" class="dragon-mascot" alt="Mascot">
+  </section>
+
+  <section id="products">
+    <!-- Products will load here -->
   </section>
 
   <section class="categories">
-    <button onclick="openModal('all')">All</button>
-    <button onclick="openModal('brushes')">Brushes</button>
-    <button onclick="openModal('manga')">Manga</button>
-    <button onclick="openModal('free')">Free</button>
-    <button onclick="openModal('bundles')">Bundles</button>
-  </section>
+  <button onclick="openModal('all')">All</button>
+  <button onclick="openModal('brushes')">Brushes</button>
+  <button onclick="openModal('manga')">Manga</button>
+  <button onclick="openModal('free')">Free</button>
+  <button onclick="openModal('bundles')">Bundles</button>
+</section>
 
-  <div id="modal" class="modal hidden">
-    <div class="modal-content" id="modal-content">
-      <button class="modal-close" onclick="closeModal()">✖️</button>
-    </div>
+<div id="modal" class="modal hidden">
+  <div class="modal-content" id="modal-content">
+    <!-- Dynamic content goes here -->
+    <button class="modal-close" onclick="closeModal()">✖️</button>
   </div>
+</div>
+
 
   <footer>
     © 2025 Hesart's Store. All rights reserved.
@@ -143,39 +232,78 @@
     if (savedTheme) {
       document.documentElement.setAttribute('data-theme', savedTheme);
     }
-
-    function openModal(type) {
-      const modal = document.getElementById("modal");
-      const content = document.getElementById("modal-content");
-
-      let html = "";
-      switch (type) {
-        case "all":
-          html = "<h2>All Products</h2><p>Every item we have in store!</p>";
-          break;
-        case "brushes":
-          html = "<h2>Brushes</h2><p>Here are your amazing brushes!</p>";
-          break;
-        case "manga":
-          html = "<h2>Manga</h2><p>Dive into our dark fantasy saga.</p>";
-          break;
-        case "free":
-          html = "<h2>Freebies</h2><p>These downloads are on the house!</p>";
-          break;
-        case "bundles":
-          html = "<h2>Bundles</h2><p>Save more with these curated packs.</p>";
-          break;
-        default:
-          html = "<p>Content not found.</p>";
-      }
-
-      content.innerHTML = html + `<button class="modal-close" onclick="closeModal()">✖️</button>`;
-      modal.classList.remove("hidden");
-    }
-
-    function closeModal() {
-      document.getElementById("modal").classList.add("hidden");
-    }
   </script>
+
+  <script>
+    const carouselImages = [
+      "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/carousel/IMG_20250708_183225_746_copy_600x771.jpg",
+      "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/carousel/Ruvianbeach_copy_800x700.jpg",
+      "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/carousel/zuvobaby4_copy_600x857.jpg"
+    ];
+
+    let carouselIndex = 0;
+
+    function renderCarousel() {
+      const container = document.getElementById("hero-carousel");
+      container.innerHTML = "";
+
+      const total = carouselImages.length;
+      const leftIndex = (carouselIndex + total - 1) % total;
+      const centerIndex = carouselIndex;
+      const rightIndex = (carouselIndex + 1) % total;
+
+      [leftIndex, centerIndex, rightIndex].forEach((i, idx) => {
+        const div = document.createElement('div');
+        div.className = 'carousel-image ' + (idx === 1 ? 'center' : 'faded');
+        div.innerHTML = `<img src="${carouselImages[i]}" alt="Carousel">`;
+        container.appendChild(div);
+      });
+    }
+
+    window.onload = () => {
+      renderCarousel();
+      setInterval(() => {
+        carouselIndex = (carouselIndex + 1) % carouselImages.length;
+        renderCarousel();
+      }, 5000);
+    };
+  </script>
+
+  <script>
+  function openModal(type) {
+    const modal = document.getElementById("modal");
+    const content = document.getElementById("modal-content");
+
+    let html = "";
+    switch (type) {
+      case "all":
+        html = "<h2>All Products</h2><p>Every item we have in store!</p>";
+        break;
+      case "brushes":
+        html = "<h2>Brushes</h2><p>Here are your amazing brushes!</p>";
+        break;
+      case "manga":
+        html = "<h2>Manga</h2><p>Dive into our dark fantasy saga.</p>";
+        break;
+      case "free":
+        html = "<h2>Freebies</h2><p>These downloads are on the house!</p>";
+        break;
+      case "bundles":
+        html = "<h2>Bundles</h2><p>Save more with these curated packs.</p>";
+        break;
+      default:
+        html = "<p>Content not found.</p>";
+    }
+
+    content.innerHTML = html + `<button class="modal-close" onclick="closeModal()">✖️</button>`;
+    modal.classList.remove("hidden");
+  }
+
+  function closeModal() {
+    document.getElementById("modal").classList.add("hidden");
+  }
+</script>
+
+
 </body>
 </html>
