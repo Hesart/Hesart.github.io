@@ -76,6 +76,57 @@
 }
 
 
+      .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(50, 45, 41, 0.8); /* Luxe theme dark semi-transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: var(--bg);
+  color: var(--text);
+  padding: 2rem;
+  width: 50%;
+  max-width: 500px; /* LIMIT width here */
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+    
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  font-size: 1.1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modal-close:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+    
+.hidden{
+  display: none;
+}
+
+
+    
+
     .hero {
       position: relative;
       background-size: cover;
@@ -127,6 +178,8 @@
       100% { transform: scale(1); }
     }
 
+
+    
     .hero-carousel {
       display: flex;
       justify-content: center;
