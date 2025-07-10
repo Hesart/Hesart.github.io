@@ -207,14 +207,15 @@ footer {
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     }
-  </script>
   
-  <script>
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       document.documentElement.setAttribute('data-theme', savedTheme);
     }
 
+      </script>
+
+  <script>
     const SUPABASE_URL = 'YOUR_SUPABASE_URL';
     const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
     const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
