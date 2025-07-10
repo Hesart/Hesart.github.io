@@ -298,9 +298,9 @@ footer {
   
   <section class="hero">
     <div class="hero-overlay">
-        <div class="hero-carousel" id="hero-carousel"></div>
       <h1>Welcome!</h1>
       <p>Discover crafted tools for easier drawing and enjoy our original dark fantasy story!</p>
+       <div class="hero-carousel" id="hero-carousel"></div>
       <br>
       <a href="#products">Shop Now</a>
     </div>
@@ -400,18 +400,20 @@ function closeModal() {
 }
  </script>
   
+  
+  <div id="modal" class="modal hidden">
+  <div class="modal-content" id="modal-content">
+    <!-- Dynamic content goes here -->
+  </div>
+  <button class="modal-close" onclick="closeModal()">✖</button>
+</div>
 
-      <script>
-const carouselImages = [
-  "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//elfboy2.jpg",
-  "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//mika%20new2.jpg",
-  "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//Ruvian%20beach.jpg"
-  "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//Ruvian%20beach.jpg"
-];
+
+        <script>
 
 let carouselIndex = 0;
 
-function renderCarousel() {
+window.onload = function renderCarousel() {
   const container = document.getElementById("hero-carousel");
   container.innerHTML = '';
 
@@ -434,15 +436,17 @@ setInterval(() => {
 }, 5000);
 
 renderCarousel();
+
+          const carouselImages = [
+  "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//elfboy2.jpg",
+  "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//mika%20new2.jpg",
+  "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//Ruvian%20beach.jpg"
+  "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//Ruvian%20beach.jpg"
+];
 </script>
 
   
-  <div id="modal" class="modal hidden">
-  <div class="modal-content" id="modal-content">
-    <!-- Dynamic content goes here -->
-  </div>
-  <button class="modal-close" onclick="closeModal()">✖</button>
-</div>
+
   
 </body>
 </html>
