@@ -48,19 +48,20 @@
       cursor: pointer;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
-
     .hero {
       position: relative;
       background-size: cover;
       background-position: center;
       min-height: 400px;
       color: var(--bg);
+    }
+
+    .hero-overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 3rem 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .hero a {
@@ -71,14 +72,6 @@
       padding: 0.7rem 1.4rem;
       border-radius: 4px;
       text-decoration: none;
-    }
-
-    .hero-overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 3rem 1rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
     }
 
     .dragon-mascot {
@@ -104,89 +97,6 @@
       0% { transform: scale(1); }
       50% { transform: scale(1.03); }
       100% { transform: scale(1); }
-    }
-
-    .categories {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 1rem;
-      background: var(--bg);
-    }
-
-    .categories button {
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .categories button:hover {
-      background: var(--text);
-      color: var(--bg);
-    }
-
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(50, 45, 41, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .modal-content {
-      background: var(--bg);
-      color: var(--text);
-      padding: 2rem;
-      width: 90%;
-      max-width: 500px;
-      max-height: 80vh;
-      overflow-y: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      font-size: 1.1rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .modal.hidden {
-      display: none;
-    }
-
-    #products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 2rem;
-    }
-
-    .product-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      border-radius: 6px;
     }
 
     .hero-carousel {
@@ -228,9 +138,20 @@
       filter: blur(2px);
       z-index: 0;
     }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      z-index: 10;
+      position: relative;
+      background: var(--bg);
+    }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Hesart's Store</h1>
     <button class="dark-toggle" onclick="toggleDarkMode()">🌗</button>
@@ -244,23 +165,16 @@
       <br>
       <a href="#products">Shop Now</a>
     </div>
-    <img src="https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//zuvo%20png.png" class="dragon-mascot" alt="Mascot">
+    <img src="https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/zuvo%20png.png" class="dragon-mascot" alt="Mascot">
   </section>
 
-  <section class="categories">
-    <button onclick="openModal('all')">All</button>
-    <button onclick="openModal('brushes')">Brushes</button>
-    <button onclick="openModal('manga')">Manga</button>
-    <button onclick="openModal('free')">Free</button>
-    <button onclick="openModal('bundles')">Bundles</button>
+  <section id="products">
+    <!-- Products will load here -->
   </section>
 
-  <section id="products"></section>
-
-  <div id="modal" class="modal hidden">
-    <div class="modal-content" id="modal-content"></div>
-    <button class="modal-close" onclick="closeModal()">✖️</button>
-  </div>
+  <footer>
+    © 2025 Hesart's Store. All rights reserved.
+  </footer>
 
   <script>
     function toggleDarkMode() {
@@ -271,64 +185,23 @@
     }
 
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
-
-    function openModal(type) {
-      const modal = document.getElementById("modal");
-      const content = document.getElementById("modal-content");
-      const map = {
-        all: `<h2>All Products</h2><p>Everything in one place!</p>`,
-        brushes: `<h2>Brushes</h2><p>Here are all your amazing brush products...</p>`,
-        manga: `<h2>Manga</h2><p>Read our dark fantasy chapters here.</p>`,
-        free: `<h2>Freebies</h2><p>These are our free downloads!</p>`,
-        bundles: `<h2>Bundles</h2><p>Save more with our product bundles.</p>`
-      };
-      content.innerHTML = map[type] || `<p>Unknown content type.</p>`;
-      modal.classList.remove("hidden");
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
     }
+  </script>
 
-    function closeModal() {
-      document.getElementById("modal").classList.add("hidden");
-    }
-
-    const SUPABASE_URL = 'https://eafpiecimmjtlxhlszbm.supabase.co';
-    const SUPABASE_ANON_KEY = '<YOUR_ANON_KEY>'; // Replace with your real anon key
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    async function loadProducts() {
-      const { data, error } = await supabase.from('products').select('*');
-      const container = document.getElementById('products');
-      if (error) {
-        container.innerHTML = '<p>Error loading products.</p>';
-        return;
-      }
-
-      data.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <h3>${product.title}</h3>
-          <p>Type: ${product.type}</p>
-          <p>Price: $${product.price}</p>
-          ${product.download_url ? `<a href="${product.download_url}" target="_blank">Download</a>` : `<em>Coming soon</em>`}
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    loadProducts();
-
-    let carouselIndex = 0;
+  <script>
     const carouselImages = [
       "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/carousel/IMG_20250708_183225_746_copy_600x771.jpg",
       "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/carousel/Ruvianbeach_copy_800x700.jpg",
       "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/carousel/zuvobaby4_copy_600x857.jpg"
     ];
 
+    let carouselIndex = 0;
+
     function renderCarousel() {
       const container = document.getElementById("hero-carousel");
-      if (!container) return;
-      container.innerHTML = '';
+      container.innerHTML = "";
 
       const total = carouselImages.length;
       const leftIndex = (carouselIndex + total - 1) % total;
@@ -351,5 +224,7 @@
       }, 5000);
     };
   </script>
+
 </body>
 </html>
+
