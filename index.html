@@ -47,7 +47,6 @@
   background: rgba(50, 45, 41, 0.8); /* Luxe theme dark semi-transparent */
   display: flex;
   justify-content: center;
-  position: center;
   align-items: center;
   z-index: 999;
 }
@@ -62,7 +61,6 @@
   overflow-y: auto;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  position: center;
 }
     
 .modal-close {
@@ -348,19 +346,19 @@ footer {
       const { data, error } = await supabase.from('products').select('*');
       const container = document.getElementById('products');
       if (error) {
-        container.innerHTML = <p>Error loading products.</p>;
+        container.innerHTML ='<p>Error loading products.</p>';
         return;
       }
 
       data.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
-        card.innerHTML = 
+        card.innerHTML = '
           <h3>${product.title}</h3>
           <p>Type: ${product.type}</p>
           <p>Price: $${product.price}</p>
-          ${product.download_url ? <a href="${product.download_url}" target="_blank">Download</a> : '<em>Coming soon</em>'}
-        ;
+          ${product.download_url ?'<a href="${product.download_url}" target="_blank">Download</a>' : '<em>Coming soon</em>'}
+       ' ;
         container.appendChild(card);
       });
     }
