@@ -409,6 +409,42 @@ function closeModal() {
 </div>
 
 
+if (modal.classList.contains("hidden")) {
+    switch (contentType) {
+      case 'brushes':
+        content.innerHTML = "<h2>Brushes</h2><p>Here are all your amazing brush products...</p>";
+        break;
+      case 'manga':
+        content.innerHTML = "<h2>Manga</h2><p>Read our dark fantasy chapters here.</p>";
+        break;
+      case 'free':
+        content.innerHTML = "<h2>Freebies</h2><p>These are our free downloads!</p>";
+        break;
+      case 'bundles':
+        content.innerHTML = "<h2>Bundles</h2><p>Save more with our product bundles.</p>";
+        break;
+      default:
+        content.innerHTML = "<p>Unknown content.</p>";
+    }
+
+    modal.classList.remove("hidden");
+  }
+}
+
+function closeModal() {
+  document.getElementById("modal").classList.add("hidden");
+}
+ </script>
+  
+  
+  <div id="modal" class="modal hidden">
+  <div class="modal-content" id="modal-content">
+    <!-- Dynamic content goes here -->
+  </div>
+  <button class="modal-close" onclick="closeModal()">✖️</button>
+</div>
+
+
 <script>
  
 
@@ -452,6 +488,9 @@ window.onload = () => {
   }, 5000):
 </script>
 
+  
+</body>
+</html>
   
 </body>
 </html>
