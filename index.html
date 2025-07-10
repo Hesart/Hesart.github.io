@@ -300,8 +300,8 @@ footer {
     <div class="hero-overlay">
       <h1>Welcome!</h1>
       <p>Discover crafted tools for easier drawing and enjoy our original dark fantasy story!</p>
+         <div class="hero-carousel" id="hero-carousel"></div>
       <br>
-      <div class="hero-carousel" id="hero-carousel"></div>
       <a href="#products">Shop Now</a>
     </div>
     <img src="https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//zuvo%20png.png" class="dragon-mascot" alt="Mascot">
@@ -399,16 +399,9 @@ function closeModal() {
   document.getElementById("modal").classList.add("hidden");
 }
  </script>
-
   
-  <div id="modal" class="modal hidden">
-  <div class="modal-content" id="modal-content">
-    <!-- Dynamic content goes here -->
-  </div>
-  <button class="modal-close" onclick="closeModal()">✖</button>
-</div>
 
-    <script>
+      <script>
 const carouselImages = [
   "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//elfboy2.jpg",
   "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//mika%20new2.jpg",
@@ -442,6 +435,14 @@ setInterval(() => {
 
 renderCarousel();
 </script>
+
+  
+  <div id="modal" class="modal hidden">
+  <div class="modal-content" id="modal-content">
+    <!-- Dynamic content goes here -->
+  </div>
+  <button class="modal-close" onclick="closeModal()">✖</button>
+</div>
   
 </body>
 </html>
