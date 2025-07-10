@@ -465,22 +465,19 @@ if (modal.classList.contains("hidden")) {
       container.appendChild(div);
     });
   } 
+  
 </script>
 
   <script>
 
 window.onload = () => {
-  
-   Initial load
-  renderCarousel();
+  renderCarousel();
 
-  // Rotate every 5 seconds
-  setInterval(() => {
-    carouselIndex = (carouselIndex + 1) % carouselImages.length;
-    renderCarousel();
-  }, 5000);
+  setInterval(() => {
+    carouselIndex = (carouselIndex + 1) % carouselImages.length;
+    renderCarousel();
+  }, 5000);
 };
-  }, 5000):
 </script>
 
   
