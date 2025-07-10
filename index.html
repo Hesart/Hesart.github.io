@@ -48,6 +48,21 @@
       cursor: pointer;
     }
 
+    footer {
+  clear: both;
+}
+
+    @media (max-width: 480px) {
+  .hero-overlay {
+    padding: 1.5rem 0.5rem;
+  }
+  .carousel-image.center {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+    
     .categories {
   display: flex;
   justify-content: center;
@@ -124,8 +139,10 @@
   display: none;
 }
 
+    .hidden {
+  display: none !important;
+}
 
-    
 
     .hero {
       position: relative;
@@ -261,12 +278,16 @@
   <button onclick="openModal('bundles')">Bundles</button>
 </section>
 
-<div id="modal" class="modal hidden">
-  <div class="modal-content" id="modal-content">
-    <!-- Dynamic content goes here -->
+<!-- Modal Container -->
+<div id="modal-container" class="hidden">
+  <div class="modal">
+    <div class="modal-content" id="modal-content">
+      <!-- Modal content goes here -->
+    </div>
     <button class="modal-close" onclick="closeModal()">✖️</button>
   </div>
 </div>
+
 
 
   <footer>
@@ -322,9 +343,9 @@
     };
   </script>
 
-  <script>
+<script>
   function openModal(type) {
-    const modal = document.getElementById("modal");
+    const container = document.getElementById("modal-container");
     const content = document.getElementById("modal-content");
 
     let html = "";
@@ -348,14 +369,17 @@
         html = "<p>Content not found.</p>";
     }
 
-    content.innerHTML = html + `<button class="modal-close" onclick="closeModal()">✖️</button>`;
-    modal.classList.remove("hidden");
+    content.innerHTML = html;
+    container.classList.remove("hidden");
   }
 
   function closeModal() {
-    document.getElementById("modal").classList.add("hidden");
+    const container = document.getElementById("modal-container");
+    container.classList.add("hidden");
+    document.getElementById("modal-content").innerHTML = ""; // Clear modal content
   }
 </script>
+
 
 
 </body>
