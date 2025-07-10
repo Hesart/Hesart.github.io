@@ -208,7 +208,9 @@ footer {
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     }
-
+  </script>
+  
+  <script>
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       document.documentElement.setAttribute('data-theme', savedTheme);
