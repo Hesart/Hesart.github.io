@@ -90,11 +90,24 @@ nav a {
   position: absolute;
   bottom: 1rem;
   left: 1rem;
-  width: 80px;
+  width: 60px;
+  height: auto;
   max-width: 15vw;
   opacity: 1;
   z-index: 2;
   pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .dragon-mascot {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .dragon-mascot {
+    display: block;
+  }
 }
 
 .categories {
@@ -171,12 +184,10 @@ footer {
     <button>Free</button>
     <button>Bundles</button>
   </section>  <section id="products">
-    <!-- Supabase products will be loaded here -->
-  </section>  <section class="sale-banner">
+    <!-- Supabase products will be loaded here --></section>  <section class="sale-banner">
     <h2>Mid Season Sale — Up To 30% Off</h2>
   </section>  <footer>
     © 2025 Heart's Store. All rights reserved.
-
   </footer>  <script>
     function toggleDarkMode() {
       const current = document.documentElement.getAttribute('data-theme');
