@@ -300,7 +300,7 @@ footer {
     <div class="hero-overlay">
       <h1>Welcome!</h1>
       <p>Discover crafted tools for easier drawing and enjoy our original dark fantasy story!</p>
-       <div class="hero-carousel" id="hero-carousel"></div>
+       <div id="hero-carousel" class="hero-carousel" ></div>
       <br>
       <a href="#products">Shop Now</a>
     </div>
@@ -437,15 +437,15 @@ function closeModal() {
     });
   }
 
-  window.onload = () => {
+  // Initial load
+  renderCarousel();
+
+  // Rotate every 5 seconds
+  setInterval(() => {
+    carouselIndex = (carouselIndex + 1) % carouselImages.length;
     renderCarousel();
-    setInterval(() => {
-      carouselIndex = (carouselIndex + 1) % carouselImages.length;
-      renderCarousel();
-    }, 5000);
-  };
+  }, 5000);
 </script>
-  
 
   
 </body>
