@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+<!DOCTYPE html><html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>YourBrand | Brushes & Manga</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart's Store | Brushes & Manga</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <style>
     :root {
@@ -12,135 +11,144 @@
       --accent: #72383D;
       --card-bg: #D1C7BD;
       --border: #D9D9D9;
-    }
+    }[data-theme="dark"] {
+  --bg: #322D29;
+  --text: #EFE9E1;
+  --accent: #AC9C8D;
+  --card-bg: #72383D;
+  --border: #AC9C8D;
+}
 
-    [data-theme="dark"] {
-      --bg: #322D29;
-      --text: #EFE9E1;
-      --accent: #AC9C8D;
-      --card-bg: #72383D;
-      --border: #AC9C8D;
-    }
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
 
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
-    }
+header {
+  text-align: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
 
-    header {
-      text-align: center;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
+.dark-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-    .dark-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bold;
+}
 
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: bold;
-    }
+.hero {
+  position: relative;
+  background-image: url('https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//sky3.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+  color: var(--bg);
+}
 
-    .hero {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: var(--card-bg);
-    }
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 3rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
 
-    .hero h1 {
-      margin-bottom: 1rem;
-      font-size: 2rem;
-    }
+.hero a {
+  margin-top: 1.5rem;
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.7rem 1.4rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
 
-    .categories {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 1rem;
-      background: var(--bg);
-    }
-
-    .categories button {
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    #products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 2rem;
-    }
-
-    .product-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      border-radius: 6px;
-    }
-
-    .product-card h3 {
-      margin: 0 0 0.5rem 0;
-    }
-
-    .sale-banner {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: var(--accent);
-      color: var(--bg);
-      margin: 2rem 0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.9rem;
-    }
-
-    .dragon-mascot {
+.dragon-mascot {
   position: absolute;
   bottom: 1rem;
   left: 1rem;
-  width: 100px;
-  max-width: 20vw;
-  opacity: 0.9;
+  width: 80px;
+  max-width: 15vw;
+  opacity: 1;
   z-index: 2;
+  pointer-events: none;
 }
 
-    
+.categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--bg);
+}
+
+.categories button {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.sale-banner {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  margin: 2rem 0;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
   </style>
 </head>
-  
 <body>
   <header>
-    <h1>YourBrand</h1>
+    <h1>Heart's Store</h1>
     <button class="dark-toggle" onclick="toggleDarkMode()">🌗</button>
     <nav>
       <a href="#">Brushes</a>
@@ -148,38 +156,28 @@
       <a href="#">Bundles</a>
       <a href="#">Freebies</a>
     </nav>
-  </header>
-
-<section class="hero" style="background-image: url('https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//zuvo%20png.png'); background-size: cover; background-position: center; color: var(--bg);">
-  <div style="background-color: rgba(0, 0, 0, 0.6); padding: 3rem 1rem;">
-    <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Heart's Store</h1>
-    <p style="font-size: 1.1rem; max-width: 600px; margin: auto;">Discover crafted tools for easier drawing and enjoy our original dark fantasy story!</p>
-    <br>
-    <a href="#products" style="margin-top: 1.5rem; display: inline-block; background: var(--accent); color: var(--bg); padding: 0.7rem 1.4rem; border-radius: 4px; text-decoration: none;">Shop Now</a>
-  </div>
-</section>
-
-  <section class="categories">
+  </header>  <section class="hero">
+    <div class="hero-overlay">
+      <h1>Heart's Store</h1>
+      <p>Discover crafted tools for easier drawing and enjoy our original dark fantasy story!</p>
+      <br>
+      <a href="#products">Shop Now</a>
+    </div>
+    <img src="https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora//sleepdragon.png" class="dragon-mascot" alt="Mascot">
+  </section>  <section class="categories">
     <button>All</button>
     <button>Brushes</button>
     <button>Manga</button>
     <button>Free</button>
     <button>Bundles</button>
-  </section>
-
-  <section id="products">
-    <!-- Supabase products will be inserted here -->
-  </section>
-
-  <section class="sale-banner">
+  </section>  <section id="products">
+    <!-- Supabase products will be loaded here -->
+  </section>  <section class="sale-banner">
     <h2>Mid Season Sale — Up To 30% Off</h2>
-  </section>
+  </section>  <footer>
+    © 2025 Heart's Store. All rights reserved.
 
-  <footer>
-    © 2025 YourBrand. All rights reserved.
-  </footer>
-
-  <script>
+  </footer>  <script>
     function toggleDarkMode() {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'light' ? 'dark' : 'light';
@@ -191,28 +189,12 @@
     if (savedTheme) {
       document.documentElement.setAttribute('data-theme', savedTheme);
     }
-      </script>
-  
-    <script>
-      
-        <img src= dragon-mascot>
-     alt="Heart's Store Mascot" 
-     style="
-       position: absolute;
-       bottom: 1rem;
-       left: 1rem;
-       width: 100px;
-       max-width: 20vw;
-       opacity: 0.9;
-       z-index: 2;
-     ">
 
-    const SUPABASE_URL = 'https://eafpiecimmjtlxhlszbm.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhZnBpZWNpbW1qdGx4aGxzemJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNDE4MjQsImV4cCI6MjA2NzcxNzgyNH0.N2zg5tNJWw42XbwH4TJ1masA3bvvi5I7q5Su_KpVkSA';
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
     const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    
-async function loadProducts() {
+    async function loadProducts() {
       const { data, error } = await supabase.from('products').select('*');
       const container = document.getElementById('products');
       if (error) {
@@ -230,12 +212,9 @@ async function loadProducts() {
           ${product.download_url ? <a href="${product.download_url}" target="_blank">Download</a> : '<em>Coming soon</em>'}
         ;
         container.appendChild(card);
-      
       });
     }
 
     loadProducts();
-    </script>
-  
-</body>
+  </script></body>
 </html>
