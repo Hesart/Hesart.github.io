@@ -2,10 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My First Website</title>
+  <title>My Brush & Manga Store</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <p>This is my first free website, hosted with GitHub Pages!</p>
+  <h1>Welcome to My Store</h1>
+  <div id="products"></div>
+
+  <script>
+    const SUPABASE_URL = 'https://eafpiecimmjtlxhlszbm.supabase.co';
+    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function loadProducts() {
+      const { data, error } = await supabase.from('products').select('*');
+      if (error) {
+        document.getElementById('products').innerHTML = <p>Error: ${error.message}</p>;
+        return;
+      }
+
+      const container = document.getElementById('products');
+      data.forEach(product => {
+        const card = document.createElement('div');
+        card.innerHTML = 
+          <h3>${product.title}</h3>
+          <p>Type: ${product.type}</p>
+          <p>Price: $${product.price}</p>
+          ${product.download_url ? <a href="${product.download_url}" target="_blank">Download</a> : '<em>Coming soon</em>'}
+          <hr>
+        ;
+        container.appendChild(card);
+      });
+    }
+
+    loadProducts();
+  </script>
 </body>
 </html>
