@@ -1,35 +1,202 @@
+Heshoo Sheikhani, [7/10/2025 2:57 PM]
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <title>My Brush & Manga Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YourBrand | Brushes & Manga</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <style>
+    :root {
+      --bg: #EFE9E1;
+      --text: #322D29;
+      --accent: #72383D;
+      --card-bg: #D1C7BD;
+      --border: #D9D9D9;
+    }
+
+    [data-theme="dark"] {
+      --bg: #322D29;
+      --text: #EFE9E1;
+      --accent: #AC9C8D;
+      --card-bg: #72383D;
+      --border: #AC9C8D;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .dark-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: bold;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--card-bg);
+    }
+
+    .hero h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 1rem;
+      background: var(--bg);
+    }
+
+    .categories button {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    #products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 6px;
+    }
+
+    .product-card h3 {
+      margin: 0 0 0.5rem 0;
+    }
+
+    .sale-banner {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--accent);
+      color: var(--bg);
+      margin: 2rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to My Store</h1>
-  <div id="products"></div>
+  <header>
+    <h1>YourBrand</h1>
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌗</button>
+    <nav>
+      <a href="#">Brushes</a>
+      <a href="#">Manga</a>
+      <a href="#">Bundles</a>
+      <a href="#">Freebies</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Premium Brushes & Original Manga</h1>
+    <p>Discover beautifully crafted tools and stories made for digital artists.</p>
+  </section>
+
+  <section class="categories">
+    <button>All</button>
+    <button>Brushes</button>
+    <button>Manga</button>
+    <button>Free</button>
+    <button>Bundles</button>
+  </section>
+
+  <section id="products">
+    <!-- Supabase products will be inserted here -->
+  </section>
+
+  <section class="sale-banner">
+    <h2>Mid Season Sale — Up To 30% Off</h2>
+  </section>
+
+  <footer>
+    © 2025 YourBrand. All rights reserved.
+  </footer>
 
   <script>
+    function toggleDarkMode() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
     const SUPABASE_URL = 'https://eafpiecimmjtlxhlszbm.supabase.co';
-    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhZnBpZWNpbW1qdGx4aGxzemJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNDE4MjQsImV4cCI6MjA2NzcxNzgyNH0.N2zg5tNJWw42XbwH4TJ1masA3bvvi5I7q5Su_KpVkSA';
     const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    async function loadProducts() {
+Heshoo Sheikhani, [7/10/2025 2:57 PM]
+async function loadProducts() {
       const { data, error } = await supabase.from('products').select('*');
+      const container = document.getElementById('products');
       if (error) {
-        document.getElementById('products').innerHTML = <p>Error: ${error.message}</p>;
+        container.innerHTML = <p>Error loading products.</p>;
         return;
       }
 
-      const container = document.getElementById('products');
       data.forEach(product => {
         const card = document.createElement('div');
+        card.className = 'product-card';
         card.innerHTML = 
           <h3>${product.title}</h3>
           <p>Type: ${product.type}</p>
           <p>Price: $${product.price}</p>
           ${product.download_url ? <a href="${product.download_url}" target="_blank">Download</a> : '<em>Coming soon</em>'}
-          <hr>
         ;
         container.appendChild(card);
       });
