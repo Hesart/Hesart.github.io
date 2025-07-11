@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hesart's Store | Brushes & Manga</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <style>
@@ -47,73 +47,6 @@
       border-radius: 4px;
       cursor: pointer;
     }
-
-    .categories {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: var(--bg);
-}
-
-.categories button {
-  background: var(--accent);
-  color: var(--bg);
-  border: none;
-  padding: 0.6rem 1.2rem;
-  margin: 0.3rem;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.categories button:hover {
-  background: var(--text);
-  color: var(--bg);
-}
-
-
-
-.modal-content {
-  background: var(--bg);
-  color: var(--text);
-  padding: 2rem;
-  width: 50%;
-  max-width: 500px; /* LIMIT width here */
-  max-height: 80vh;
-  overflow-y: auto;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-}
-    
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: var(--accent);
-  color: var(--bg);
-  border: none;
-  font-size: 1.1rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.modal-close:hover {
-  background: var(--text);
-  color: var(--bg);
-}
-    
-.hidden{
-  display: none;
-}
-
-
-    
 
     .hero {
       position: relative;
@@ -166,8 +99,6 @@
       100% { transform: scale(1); }
     }
 
-
-    
     .hero-carousel {
       display: flex;
       justify-content: center;
@@ -208,21 +139,92 @@
       z-index: 0;
     }
 
+    .categories {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 1rem;
+      background: var(--bg);
+    }
+
+    .categories button {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      margin: 0.3rem;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .categories button:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(50, 45, 41, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      width: 50%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.1rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .hidden {
+      display: none;
+    }
 
     footer {
       text-align: center;
       padding: 1rem;
       border-top: 1px solid var(--border);
       font-size: 0.9rem;
-      z-index: 10;
-      position: relative;
       background: var(--bg);
-      clear: both;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>Hesart's Store</h1>
     <button class="dark-toggle" onclick="toggleDarkMode()">🌗</button>
@@ -239,35 +241,23 @@
     <img src="https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/zuvo%20png.png" class="dragon-mascot" alt="Mascot">
   </section>
 
-  <section id="products">
-    <!-- Products will load here -->
-  </section>
-
   <section class="categories">
-  <button onclick="openModal('all')">All</button>
-  <button onclick="openModal('brushes')">Brushes</button>
-  <button onclick="openModal('manga')">Manga</button>
-  <button onclick="openModal('free')">Free</button>
-  <button onclick="openModal('bundles')">Bundles</button>
+    <button onclick="openModal('all')">All</button>
+    <button onclick="openModal('brushes')">Brushes</button>
+    <button onclick="openModal('manga')">Manga</button>
+    <button onclick="openModal('free')">Free</button>
+    <button onclick="openModal('bundles')">Bundles</button>
   </section>
 
-<!-- Modal Container -->
-<div id="modal-container" class="hidden">
+  <section id="products"></section>
+
+  <div id="modal-container" class="modal hidden">
     <div class="modal-content" id="modal-content">
-      <!-- Modal content goes here -->
+      <button class="modal-close" onclick="closeModal()">✖️</button>
     </div>
-    <button class="modal-close" onclick="closeModal()">✖️</button>
   </div>
-  
 
-</section> 
-  <section class="sale-banner">
-    <h2>Mid Season Sale — Up To 30% Off</h2>
-  </section>
-
-  <footer>
-    © 2025 Hesart's Store. All rights reserved.
-  </footer>
+  <footer>© 2025 Hesart's Store. All rights reserved.</footer>
 
   <script>
     function toggleDarkMode() {
@@ -281,9 +271,7 @@
     if (savedTheme) {
       document.documentElement.setAttribute('data-theme', savedTheme);
     }
-  </script>
 
-  <script>
     const carouselImages = [
       "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/carousel/IMG_20250708_183225_746_copy_600x771.jpg",
       "https://eafpiecimmjtlxhlszbm.supabase.co/storage/v1/object/public/cat.aurora/carousel/Ruvianbeach_copy_800x700.jpg",
@@ -291,17 +279,15 @@
     ];
 
     let carouselIndex = 0;
-
     function renderCarousel() {
       const container = document.getElementById("hero-carousel");
       container.innerHTML = "";
-
       const total = carouselImages.length;
-      const leftIndex = (carouselIndex + total - 1) % total;
-      const centerIndex = carouselIndex;
-      const rightIndex = (carouselIndex + 1) % total;
+      const left = (carouselIndex + total - 1) % total;
+      const center = carouselIndex;
+      const right = (carouselIndex + 1) % total;
 
-      [leftIndex, centerIndex, rightIndex].forEach((i, idx) => {
+      [left, center, right].forEach((i, idx) => {
         const div = document.createElement('div');
         div.className = 'carousel-image ' + (idx === 1 ? 'center' : 'faded');
         div.innerHTML = `<img src="${carouselImages[i]}" alt="Carousel">`;
@@ -316,112 +302,27 @@
         renderCarousel();
       }, 5000);
     };
-  </script>
 
-  
-  <script>
-    const SUPABASE_URL = 'https://eafpiecimmjtlxhlszbm.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhZnBpZWNpbW1qdGx4aGxzemJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNDE4MjQsImV4cCI6MjA2NzcxNzgyNH0.N2zg5tNJWw42XbwH4TJ1masA3bvvi5I7q5Su_KpVkSA';
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    function openModal(type) {
+      const modal = document.getElementById("modal-container");
+      const content = document.getElementById("modal-content");
 
-    async function loadProducts() {
-      const { data, error } = await supabase.from('products').select('*');
-      const container = document.getElementById('products');
-      if (error) {
-        container.innerHTML ='<p>Error loading products.</p>';
-        return;
-      }
+      const messages = {
+        all: "<h2>All Products</h2><p>Every item we have in store!</p>",
+        brushes: "<h2>Brushes</h2><p>Here are your amazing brushes!</p>",
+        manga: "<h2>Manga</h2><p>Dive into our dark fantasy saga.</p>",
+        free: "<h2>Freebies</h2><p>These downloads are on the house!</p>",
+        bundles: "<h2>Bundles</h2><p>Save more with these curated packs.</p>"
+      };
 
-
-
-      data.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-
-        
-    card.innerHTML = `
-  <h3>${product.title}</h3>
-  <p>Type: ${product.type}</p>
-  <p>Price: $${product.price}</p>
-  ${product.download_url
-    ? `<a href="${product.download_url}" target="_blank">Download</a>`
-    : `<em>Coming soon</em>`}
-`;
-
-        container.appendChild(card);
-      });
-    }
-    loadProducts();
-  </script>
-
-
-
-  
-<script>
-  function openModal(type) {
-    const container = document.getElementById("modal-container");
-    const content = document.getElementById("modal-content");
-
-    let html = "";
-    switch (type) {
-      case "all":
-        html = "<h2>All Products</h2><p>Every item we have in store!</p>";
-        break;
-      case "brushes":
-        html = "<h2>Brushes</h2><p>Here are your amazing brushes!</p>";
-        break;
-      case "manga":
-        html = "<h2>Manga</h2><p>Dive into our dark fantasy saga.</p>";
-        break;
-      case "free":
-        html = "<h2>Freebies</h2><p>These downloads are on the house!</p>";
-        break;
-      case "bundles":
-        html = "<h2>Bundles</h2><p>Save more with these curated packs.</p>";
-        break;
-      default:
-        html = "<p>Content not found.</p>";
+      content.innerHTML = messages[type] || "<p>Content not found.</p>";
+      content.innerHTML += `<button class="modal-close" onclick="closeModal()">✖️</button>`;
+      modal.classList.remove("hidden");
     }
 
-    content.innerHTML = html;
-    container.classList.remove("hidden");
-  }
-
-  function closeModal() {
-    const container = document.getElementById("modal-container");
-    container.classList.add("hidden");
-    document.getElementById("modal-content").innerHTML = ""; // Clear modal content
-  }
-
-</script>
-  
-  
-
-<script>
-if (modal.classList.contains("hidden")) {
-    switch (contentType) {
-      case 'brushes':
-        content.innerHTML = "<h2>Brushes</h2><p>Here are all your amazing brush products...</p>";
-        break;
-      case 'manga':
-        content.innerHTML = "<h2>Manga</h2><p>Read our dark fantasy chapters here.</p>";
-        break;
-      case 'free':
-        content.innerHTML = "<h2>Freebies</h2><p>These are our free downloads!</p>";
-        break;
-      case 'bundles':
-        content.innerHTML = "<h2>Bundles</h2><p>Save more with our product bundles.</p>";
-        break;
-      default:
-        content.innerHTML = "<p>Unknown content.</p>";
-    }
-
-    modal.classList.remove("hidden");
-  }
-} 
-
-</script>
-
-
+    function closeModal() {
+      document.getElementById("modal-container").classList.add("hidden");
+    }
+  </script>
 </body>
 </html>
