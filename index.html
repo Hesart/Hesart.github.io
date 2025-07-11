@@ -61,19 +61,6 @@ nav a {
       cursor: pointer;
     }
 
-    footer {
-  clear: both;
-}
-
-    @media (max-width: 480px) {
-  .hero-overlay {
-    padding: 1.5rem 0.5rem;
-  }
-  .carousel-image.center {
-    width: 80px;
-    height: 80px;
-  }
-}
 
 
 @media (max-width: 3400px) {
@@ -262,7 +249,8 @@ nav a {
   border: 1px solid var(--border);
   padding: 1rem;
   border-radius: 6px;
-}.sale-banner {
+}
+    .sale-banner {
   text-align: center;
   padding: 2rem 1rem;
   background: var(--accent);
@@ -278,6 +266,7 @@ nav a {
       z-index: 10;
       position: relative;
       background: var(--bg);
+      clear: both;
     }
   </style>
 </head>
@@ -309,7 +298,7 @@ nav a {
   <button onclick="openModal('manga')">Manga</button>
   <button onclick="openModal('free')">Free</button>
   <button onclick="openModal('bundles')">Bundles</button>
-  </section> <section id = "products">
+  </section>
 
 <!-- Modal Container -->
 <div id="modal-container" class="hidden">
@@ -379,6 +368,7 @@ nav a {
     };
   </script>
 
+  
   <script>
     const SUPABASE_URL = 'https://eafpiecimmjtlxhlszbm.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhZnBpZWNpbW1qdGx4aGxzemJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNDE4MjQsImV4cCI6MjA2NzcxNzgyNH0.N2zg5tNJWw42XbwH4TJ1masA3bvvi5I7q5Su_KpVkSA';
@@ -413,35 +403,45 @@ nav a {
     loadProducts();
   </script>
 
-  <script>
-    function openModal(contentType) {
-  const modal = document.getElementById("modal");
-  const content = document.getElementById("modal-content");
-if (modal.classList.contains("hidden")) {
-    switch (contentType) {
-      case 'brushes':
-        content.innerHTML = "<h2>Brushes</h2><p>Here are all your amazing brush products...</p>";
-        break;
-      case 'manga':
-        content.innerHTML = "<h2>Manga</h2><p>Read our dark fantasy chapters here.</p>";
-        break;
-      case 'free':
-        content.innerHTML = "<h2>Freebies</h2><p>These are our free downloads!</p>";
-        break;
-      case 'bundles':
-        content.innerHTML = "<h2>Bundles</h2><p>Save more with our product bundles.</p>";
-        break;
-      default:
-        content.innerHTML = "<p>Unknown content.</p>";
-    }
 
-    modal.classList.remove("hidden");
-  }
-}
 
-function closeModal() {
-  document.getElementById("modal").classList.add("hidden");
-}
+  
+<script>
+  function openModal(type) {
+    const container = document.getElementById("modal-container");
+    const content = document.getElementById("modal-content");
+
+    let html = "";
+    switch (type) {
+      case "all":
+        html = "<h2>All Products</h2><p>Every item we have in store!</p>";
+        break;
+      case "brushes":
+        html = "<h2>Brushes</h2><p>Here are your amazing brushes!</p>";
+        break;
+      case "manga":
+        html = "<h2>Manga</h2><p>Dive into our dark fantasy saga.</p>";
+        break;
+      case "free":
+        html = "<h2>Freebies</h2><p>These downloads are on the house!</p>";
+        break;
+      case "bundles":
+        html = "<h2>Bundles</h2><p>Save more with these curated packs.</p>";
+        break;
+      default:
+        html = "<p>Content not found.</p>";
+    }
+
+    content.innerHTML = html;
+    container.classList.remove("hidden");
+  }
+
+  function closeModal() {
+    const container = document.getElementById("modal-container");
+    container.classList.add("hidden");
+    document.getElementById("modal-content").innerHTML = ""; // Clear modal content
+  }
+
 </script>
   
   
